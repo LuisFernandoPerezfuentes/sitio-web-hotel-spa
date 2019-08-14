@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row">
+      <div class="col s5">
+        <div class="card">
+          <div class="card-content">
+            
+            <form #contactForm="ngForm" (ngSubmit)="addContact(contactForm)">
+              <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="contactService.selectedContact._id">
+              <div class="row">
+                <div class="input-field col-s12">
+                  <input type="text" name="telephone" #name="ngModel" [(ngModel)]="contactService.selectedContact.telephone" placeholder="Telefono">
+                </div>
+                <div class="input-field col-s12">
+                  <input type="text" name="mail" #name="ngModel" [(ngModel)]="contactService.selectedContact.mail" placeholder="Mail">
+                </div>
+                <div class="card-action">
+                  <div class="input-field col-s12">
+                    <button class="btn right" style="margin-left: 2px;" (click)="resetForm(contactForm)">Limpar</button>
+                    <button class="btn right" style="margin-left: 2px;" (click)="addContact(contact)">Guardar</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+      <div class="col s7">
+        <table class="striped highlight black-text">
+          <thead>
+            <th>Telefono</th>
+            <th>Mail</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let contact of contactService.contacts">
+              <td>{{ contact.telephone }}</td>
+              <td>{{ contact.mail }}</td>
+              <td>
+                <a (click)="editContact(contact)">
+                  <i class="material-icons">edit</i>
+                </a>
+                <a (click)="deleteContact(contact._id, contactForm)">
+                  <i class="material-icons">delete</i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

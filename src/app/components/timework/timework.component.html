@@ -1,0 +1,172 @@
+<div class="container">
+  <div class="row">
+    <div class="col s5">
+      <div class="card">
+        <div class="card-content">
+          
+          <form #timeworkForm="ngForm" (ngSubmit)="addTimework(timeworkForm)">
+            <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="timeworkService.selectedTimework._id">
+
+
+
+
+
+
+            <div class="form-group">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Nombre</label>
+                  <input type="text" class="form-control" aria-describedby="emailHelp"  name="idemployee" #name="ngModel" [(ngModel)]="timeworkService.selectedTimework.idemployee" placeholder="Nombre">
+              </div>
+
+
+              <div class="form-group">
+                  <label for="Tipohabitacion">
+                    Tipo de Habitacion
+                  </label>
+                  <select id="tipohabitacion" name="tipohabitacion" 
+                    [(ngModel)]="timeworkService.selectedTimework.Tipohabitacion" class="form-control">
+    
+                    <option *ngFor="let tiphab of Tipohabitacion" [value]="tiphab.name">
+                      {{tiphab.name}}
+                    </option>
+                  </select>
+                </div>
+    
+
+
+
+              <div class="form-group">
+                  <label for="Tipohabitacion">Hora de Entrada</label>
+                <input type="time" name="hourenter" #name="ngModel" [(ngModel)]="timeworkService.selectedTimework.hourenter" placeholder="Hora de emtrada" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="time" name="hourexit" #name="ngModel" [(ngModel)]="timeworkService.selectedTimework.hourexit" placeholder="Hora de salida" class="form-control">
+              </div>
+
+
+
+
+
+        
+
+              <div class="input-field col-s12">
+                  <label for="Fechareserva">
+                      Fecha   de   Reserva:
+                    </label>
+                <input type="date" BsDatepicker  name="fechareserva"
+                 #name="ngModel" [(ngModel)]="timeworkService.selectedTimework.fechareserva" placeholder="Fecha de reserva">
+              </div>
+
+
+
+
+
+
+
+
+              <div class="form-check-input">
+                  <label for="Numeropersonas">
+                      
+                      Numero de Personas:
+                    </label>
+                <input type="text" name="numeropersonas" id="val1" #name="ngModel" [(ngModel)]="timeworkService.selectedTimework.numeropersonas" placeholder="Numero de Personas">
+              </div>
+
+            <br><br>
+
+            <table class="striped highlight black-text">
+                <thead>
+                  <th>Total de la Reserva</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let timework of timeworkService.timeworks">
+            
+                 {{ timework.numeropersonas * 400 }}
+            
+                  </tr>
+                </tbody>
+              </table>
+ 
+<br>
+<br>
+
+
+
+
+
+
+
+
+           
+
+
+           
+
+
+
+
+
+
+
+
+
+              <div class="card-action">
+                <div class="input-field col-s12">
+                  <button class="btn btn-danger" style="margin-left: 2px;" (click)="resetForm(timeworkForm)">Clean</button>
+                  <button class="btn btn-success" style="margin-left: 2px;" (click)="addTimework(timework)">Guardar</button>
+                </div>
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+    <div class="col s7">
+      <table class="striped highlight black-text">
+        <thead>
+          <th>Nombre Empleado</th>
+          <th>Hora de entrada</th>
+          <th>Hora de salida</th>
+          
+
+
+          <th>Tipo de Habitacion</th>
+          <th>Fecha de Reserva</th>
+          <th>Numero de Personas</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let timework of timeworkService.timeworks">
+            <td>{{ timework.idemployee }}</td>
+            <td>{{ timework.hourenter }}</td>
+            <td>{{ timework.hourexit }}</td>
+            
+
+
+
+
+
+          <td>{{ timework.tipohabitacion }}</td>
+          <td>{{ timework.fechareserva }}</td>
+          <td>{{ timework.numeropersonas }}</td>
+
+
+
+
+
+
+        
+
+            <td>
+              <a (click)="editTimework(timework)">
+                <button class="button btn-dark">editar</button>
+              </a>
+              <a (click)="deleteTimework(timework._id, timeworkForm)">
+                <button class="material-icons">borrar</button>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

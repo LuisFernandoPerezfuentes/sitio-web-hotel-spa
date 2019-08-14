@@ -1,0 +1,57 @@
+<div class="container">
+        <div class="row">
+          <div class="col s5">
+            <div class="card">
+              
+            
+          <div class="col s7">
+            <table class="striped highlight black-text">
+              <thead>
+                <th>Nombre Empleado</th>
+                <th>Hora de entrada</th>
+                <th>Hora de salida</th>
+                
+      
+      
+                <th>Tipo de Habitacion</th>
+                <th>Fecha de Reserva</th>
+                <th>Numero de Personas</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let timework of timeworkService.timeworks">
+                  <td>{{ timework.idemployee }}</td>
+                  <td>{{ timework.hourenter }}</td>
+                  <td>{{ timework.hourexit }}</td>
+                  
+      
+      
+      
+      
+      
+                <td>{{ timework.tipohabitacion }}</td>
+                <td>{{ timework.fechareserva }}</td>
+                <td>{{ timework.numeropersonas }}</td>
+      
+      
+      
+      
+      
+      
+      
+      
+                  <td>
+                    <a (click)="editTimework(timework)">
+                      <i class="material-icons">editar</i>
+                    </a>
+                    <a (click)="deleteTimework(timework._id, timeworkForm)">
+                      <i class="material-icons">borrar</i>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
